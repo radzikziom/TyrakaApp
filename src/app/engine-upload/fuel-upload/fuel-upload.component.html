@@ -1,0 +1,15 @@
+<div class="ui centered grid" style="margin-top: 70px">
+  <form class="ui form" (ngSubmit)="onSubmit(form)" #form="ngForm">
+    <div class="item">
+      <label>Type</label>
+      <input type="text" placeholder="Type" ngModel name="type">
+    </div>
+    <div class="item">
+      <label>Weight</label>
+      <input type="text" placeholder="Weight (kg)" ngModel name="weight">
+    </div>
+    <div class="item">
+      <button type="submit" class="ui primary button">Submit</button>
+    </div>
+  </form>    
+</div>

@@ -1,0 +1,25 @@
+<table class="ui inverted celled table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Body</th>
+      <th>Nozzle</th>
+      <th>Plug</th>
+      <th>Fuel</th>
+      <th style="width: 15px">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let engine of engines | paginate: { itemsPerPage: 10, currentPage: p }">
+      <td data-label="Name">{{ engine.name }}</td>
+      <td data-label="Body">{{ engine.body.material }}, {{ engine.body.height }}cm, {{ engine.body.diameter }}cm, {{ engine.body.weight }}kg</td>
+      <td data-label="Nozzle">{{ engine.nozzle.material }}, {{ engine.nozzle.weight }}kg</td>
+      <td data-label="Plug">{{ engine.plug.material }}, {{ engine.plug.weight }}kg</td>
+      <td data-label="Fuel">{{ engine.fuel.type }}, {{ engine.fuel.weight }}kg</td>
+      <td data-label="Delete" class="negative" style="width: 15px; text-align: center"><i (click)="deleteEngine(engine.id)" class="trash alternate outline icon" style="cursor: pointer"></i></td>
+    </tr>
+  </tbody>
+</table>
+<div class="ui centered grid">
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>

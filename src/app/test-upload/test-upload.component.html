@@ -1,0 +1,22 @@
+<div class="ui centered grid">
+  <div class="row" style="margin-top: 150px;">
+    <div class="two wide column">
+      <select [(ngModel)]="selectedEngine" class="ui dropdown full-width">
+        <option *ngFor="let engine of engines" [ngValue]="engine" >{{ engine.name }}</option>
+      </select>
+    </div>
+  </div>
+  <div class="row">
+    <div class="two wide column">
+      <label class="ui violet button full-width">
+        Choose a file
+        <input hidden id="file-input" type="file" (change)="onFileSelected($event)">
+      </label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="two wide column">
+      <button (click)="onUpload()" class="ui primary button full-width">Upload</button>
+    </div>
+  </div>
+</div>

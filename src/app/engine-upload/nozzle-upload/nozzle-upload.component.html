@@ -1,0 +1,20 @@
+<div class="ui centered grid" style="margin-top: 70px">
+  <div class="row">
+    <h1 style="text-align: left">Add a new nozzle</h1>
+  </div>
+  <div class="row">
+    <div class="two wide column">
+      <div class="ui input"><input type="text" placeholder="Material" [(ngModel)]="newNozzle.material"></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="two wide column">
+      <div class="ui input"><input type="text" placeholder="Weight (kg)" [(ngModel)]="newNozzle.weight"></div>
+    </div>
+  </div>
+  <div class="row">
+    <div (click)="onConfirm()" class="two wide column">
+      <div class="ui teal button">Confirm</div>
+    </div>
+  </div>
+</div>

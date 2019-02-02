@@ -1,0 +1,74 @@
+<div class="ui centered grid" style="margin-top: 80px">
+  <form class="ui form" (ngSubmit)="onSubmit(form)" #form="ngForm">
+    <div class="field">
+      <label style="color: white; text-align: left;">Parts</label>
+      <div class="four fields">
+        <div class="field">
+          <select class="ui fluid dropdown" ngModel name="body">
+            <option value="" disabled>Body</option>
+            <option *ngFor="let body of parts.bodys" [ngValue]="body">{{ body.material }}, {{ body.height }}, {{
+                body.diameter }}</option>
+          </select>
+        </div>
+        <div class="field">
+          <select class="ui fluid dropdown" ngModel name="fuel">
+            <option value="" disabled>Fuel</option>
+            <option *ngFor="let fuel of parts.fuels" [ngValue]="fuel">{{ fuel.type }}, {{ fuel.weight }}</option>
+          </select>
+        </div>
+        <div class="field">
+          <select class="ui fluid dropdown" ngModel name="nozzle">
+            <option value="" disabled>Nozzle</option>
+            <option *ngFor="let nozzle of parts.nozzles" [ngValue]="nozzle">{{ nozzle.material }}, {{ nozzle.weight }}</option>
+          </select>
+        </div>
+        <div class="field">
+          <select class="ui fluid dropdown" ngModel name="plug">
+            <option value="" disabled>Plug</option>
+            <option *ngFor="let plug of parts.plugs" [ngValue]="plug">{{ plug.material }}, {{ plug.weight }}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="four fields">
+      <div class="field">
+        <a class="ui primary button full-width" routerLink="/engine-upload/body">New</a>
+      </div>
+      <div class="field">
+        <a class="ui primary button full-width" routerLink="/engine-upload/fuel">New</a>
+      </div>
+      <div class="field">
+        <a class="ui primary button full-width" routerLink="/engine-upload/nozzle">New</a>
+      </div>
+      <div class="field">
+        <a class="ui primary button full-width" routerLink="/engine-upload/plug">New</a>
+      </div>
+    </div>
+    <div class="four fields">
+      <div class="field">
+        <button type="button" class="ui red button full-width" (click)="removeBody(form)">Delete</button>
+      </div>
+      <div class="field">
+        <button class="ui red button full-width" (click)="removeFuel(form)">Delete</button>
+      </div>
+      <div class="field">
+        <button class="ui red button full-width" (click)="removeNozzle(form)">Delete</button>
+      </div>
+      <div class="field">
+        <button class="ui red button full-width" (click)="removePlug(form)">Delete</button>
+      </div>
+    </div>
+    <div class="field">
+      <label style="color: white; float: left">Name</label>
+      <input type="text" class="ui input" placeholder="Name" ngModel name="name">
+    </div>
+    <div class="field">
+      <button [swal]="['', 'Engine added succesfully', 'success']" class="ui primary button" type="submit">Submit</button>
+    </div>
+  </form>
+</div>
+<swal
+  #submitSwal
+  text="Engine added successfully"
+  type="success">
+</swal>
