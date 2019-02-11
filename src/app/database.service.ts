@@ -55,10 +55,13 @@ export class DatabaseService {
 
   // Engines CRUD ---------------------------------------------------------------------
   loadEngines() {
-    this.http.get<Engine[]>(this.serverAddress+'/engines').subscribe((data) => {
+    this.http.get<Engine[]>(this.serverAddress + '/engines').subscribe(data => {
       this.dataStore.engines = data;
       this._engines.next(Object.assign({}, this.dataStore).engines);
-    });
+    }, error => {
+      alert("Error while connecting with server.")
+    }
+    );
   }
 
   createEngine(engine: Engine) {
@@ -82,6 +85,8 @@ export class DatabaseService {
   loadParts() {
     this.http.get<Body[]>(this.serverAddress+'/bodys').subscribe((data) => {
       this.dataStore.parts.bodys = data;
+    }, error => {
+      alert("Error while connecting with server.")
     });
     this.http.get<Fuel[]>(this.serverAddress+'/fuels').subscribe((data) => {
       this.dataStore.parts.fuels = data;
@@ -165,6 +170,8 @@ export class DatabaseService {
     this.http.get<Test[]>(this.serverAddress+'/tests').subscribe((data) => {
       this.dataStore.tests = data;
       this._tests.next(Object.assign({}, this.dataStore).tests);
+    }, error => {
+      alert("Error while connecting with server.")
     })
   }
 

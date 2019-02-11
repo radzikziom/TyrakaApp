@@ -1,15 +1,14 @@
 <div class="ui centered grid" style="margin-top: 70px">
   <form class="ui form" (ngSubmit)="onSubmit(form)" #form="ngForm">
-    <div class="item">
-      <label>Type</label>
+    <h1>Add a fuel</h1>
+    <div class="field">
+      <label style="color: white">Type</label>
       <input type="text" placeholder="Type" ngModel name="type">
     </div>
-    <div class="item">
-      <label>Weight</label>
+    <div class="field">
+      <label style="color: white">Weight</label>
       <input type="text" placeholder="Weight (kg)" ngModel name="weight">
     </div>
-    <div class="item">
-      <button type="submit" class="ui primary button">Submit</button>
-    </div>
-  </form>    
+    <button type="submit" class="ui button">Submit</button>
+  </form>
 </div>

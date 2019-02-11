@@ -20,12 +20,6 @@ export class EngineUploadComponent implements OnInit {
   @ViewChild('submitSwal') private submitSwal: SwalComponent;
   @ViewChild('form') private form;
 
-  selectedBody: Body;
-  selectedFuel: Fuel;
-  selectedNozzle: Nozzle;
-  selectedPlug: Plug;
-  newEngineName: string;
-
   constructor(private database: DatabaseService) { }
   
   ngOnInit() {
@@ -43,26 +37,16 @@ export class EngineUploadComponent implements OnInit {
     this.database.removeBody(form.form.value.body.id);
   }
 
-  removeFuel() {
-    this.database.removeFuel(this.selectedFuel.id);
+  removeFuel(form: NgForm) {
+    this.database.removeFuel(form.form.value.fuel.id);
   }
 
-  removeNozzle() {
-    this.database.removeNozzle(this.selectedNozzle.id);
+  removeNozzle(form: NgForm) {
+    this.database.removeNozzle(form.form.value.nozzle.id);
   }
 
-  removePlug() {
-    this.database.removePlug(this.selectedPlug.id);
-  }
-
-  addEngine() {
-    let createdEngine = new Engine(
-      this.newEngineName,
-      Object.assign({}, this.selectedBody),
-      Object.assign({}, this.selectedFuel),
-      Object.assign({}, this.selectedNozzle), 
-      Object.assign({}, this.selectedPlug));
-    this.database.createEngine(createdEngine);
+  removePlug(form: NgForm) {
+    this.database.removePlug(form.form.value.plug.id);
   }
 
   onSubmit(form: NgForm) {

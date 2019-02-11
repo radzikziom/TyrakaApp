@@ -49,13 +49,13 @@
         <button type="button" class="ui red button full-width" (click)="removeBody(form)">Delete</button>
       </div>
       <div class="field">
-        <button class="ui red button full-width" (click)="removeFuel(form)">Delete</button>
+        <button type="button" class="ui red button full-width" (click)="removeFuel(form)">Delete</button>
       </div>
       <div class="field">
-        <button class="ui red button full-width" (click)="removeNozzle(form)">Delete</button>
+        <button type="button" class="ui red button full-width" (click)="removeNozzle(form)">Delete</button>
       </div>
       <div class="field">
-        <button class="ui red button full-width" (click)="removePlug(form)">Delete</button>
+        <button type="button" class="ui red button full-width" (click)="removePlug(form)">Delete</button>
       </div>
     </div>
     <div class="field">
@@ -63,7 +63,7 @@
       <input type="text" class="ui input" placeholder="Name" ngModel name="name">
     </div>
     <div class="field">
-      <button [swal]="['', 'Engine added succesfully', 'success']" class="ui primary button" type="submit">Submit</button>
+      <button class="ui primary button" type="submit">Submit</button>
     </div>
   </form>
 </div>

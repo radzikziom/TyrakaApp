@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Nozzle } from 'src/app/shared/models/nozzle.model';
 import { DatabaseService } from 'src/app/database.service';
 import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-nozzle-upload',
@@ -9,15 +10,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./nozzle-upload.component.css']
 })
 export class NozzleUploadComponent implements OnInit {
-  newNozzle: Nozzle;
   constructor(private database: DatabaseService, private router: Router) { }
 
   ngOnInit() {
-    this.newNozzle = new Nozzle();
   }
 
-  onConfirm() {
-    this.database.createNozzle(Object.assign({}, this.newNozzle));
+  onSubmit(form: NgForm) {
+    let createdNozzle = new Nozzle(form.form.value.material, form.form.value.weight)
+    this.database.createNozzle(createdNozzle);
     this.router.navigateByUrl('/engine-upload');
   }
 }

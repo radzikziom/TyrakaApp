@@ -1,19 +1,20 @@
 <div class="ui centered grid">
   <form class="ui form" style="margin-top: 70px" (ngSubmit)="onSubmit(form)" #form="ngForm">
+    <h1>Add a body</h1>
     <div class="field">
-      <label>Material</label>
+      <label style="color: white">Material</label>
       <input type="text" placeholder="Material" ngModel name="material">
     </div>
     <div class="field">
-      <label>Height</label>
+      <label style="color: white">Height</label>
       <input type="number" placeholder="Height (cm)" ngModel name="height">
     </div>
     <div class="field">
-      <label>Diameter</label>
+      <label style="color: white">Diameter</label>
       <input type="number" placeholder="Diameter (cm)" ngModel name="diameter">
     </div>
     <div class="field">
-      <label>Weight</label>
+      <label style="color: white">Weight</label>
       <input type="number" placeholder="Weight (kg)" ngModel name="weight">
     </div>
     <button class="ui button" type="submit">Submit</button>

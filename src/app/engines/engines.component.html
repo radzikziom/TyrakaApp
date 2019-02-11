@@ -16,7 +16,7 @@
       <td data-label="Nozzle">{{ engine.nozzle.material }}, {{ engine.nozzle.weight }}kg</td>
       <td data-label="Plug">{{ engine.plug.material }}, {{ engine.plug.weight }}kg</td>
       <td data-label="Fuel">{{ engine.fuel.type }}, {{ engine.fuel.weight }}kg</td>
-      <td data-label="Delete" class="negative" style="width: 15px; text-align: center"><i (click)="deleteEngine(engine.id)" class="trash alternate outline icon" style="cursor: pointer"></i></td>
+      <td data-label="Delete" style="width: 15px; text-align: center"><button (click)="deleteEngine(engine.id)" class="ui mini red basic button">x</button></td>
     </tr>
   </tbody>
 </table>

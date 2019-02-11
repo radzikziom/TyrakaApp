@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart } from 'chart.js';
 import { GraphService } from '../graph.service';
-import { generate } from 'rxjs';
 
 @Component({
   selector: 'app-test-graph',

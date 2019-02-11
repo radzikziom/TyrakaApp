@@ -27,4 +27,6 @@ export class GraphService {
     this.thrustReads = thrustReads;
     this.timestamps = timestams;
   }
+
+  
 }

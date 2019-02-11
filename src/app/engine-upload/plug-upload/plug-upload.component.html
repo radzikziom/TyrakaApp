@@ -1,20 +1,14 @@
 <div class="ui centered grid" style="margin-top: 70px">
-  <div class="row">
-    <h1 style="text-align: left">Add a new plug</h1>
-  </div>
-  <div class="row">
-    <div class="two wide column">
-      <div class="ui input"><input type="text" placeholder="Material" [(ngModel)]="newPlug.material"></div>
+  <form class="ui form" (ngSubmit)="onSubmit(form)" #form="ngForm">
+    <h1>Add a plug</h1>
+    <div class="field">
+      <label style="color: white">Material</label>
+      <div class="ui input"><input type="text" placeholder="Material" ngModel name="material"></div>
     </div>
-  </div>
-  <div class="row">
-    <div class="two wide column">
-      <div class="ui input"><input type="text" placeholder="Weight (kg)" [(ngModel)]="newPlug.weight"></div>
+    <div class="field">
+      <label style="color: white">Weight</label>
+      <div class="ui input"><input type="number" placeholder="Weight (kg)" ngModel name="weight"></div>
     </div>
-  </div>
-  <div class="row">
-    <div (click)="onConfirm()" class="two wide column">
-      <div class="ui teal button">Confirm</div>
-    </div>
-  </div>
+    <button type="submit" class="ui button">Submit</button>
+  </form>
 </div>

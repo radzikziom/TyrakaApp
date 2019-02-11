@@ -18,7 +18,7 @@
       <td data-label="Specific impulse">{{ test.specificImpuls.toFixed(2) }}N</td>
       <td data-label="Simulated height">{{ getSimulatedHeight(test).toFixed(2) }}m</td>
       <td data-label="Engine">{{ test.engine.name }}</td>
-      <td data-label="Delete" class="negative" style="width: 15px; text-align: center"><i (click)="deleteTest(test.id)" class="trash alternate outline icon" style="cursor: pointer"></i></td>
+      <td data-label="Delete" style="width: 15px; text-align: center"><button (click)="deleteTest(test.id)" class="ui mini red basic button">x</button></td>
     </tr>
   </tbody>
 </table>
