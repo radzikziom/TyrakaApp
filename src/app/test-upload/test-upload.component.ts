@@ -46,38 +46,26 @@ export class TestUploadComponent implements OnInit {
 
   calculateResults(results: { thrust: number, temp: number, time: number }[] ) {
     let borderVal = 0.8;
-    let beginIdx = [];
-    let endIdx = [];
-    let thrustSum = 0;
-    let timeSum = 0;
-    let idxSum = 0;
 
     let tempReads = [];
     let thrustReads = [];
     let timeReads= [];
 
+    // Get results without unimportatnt ones
     for (let line of results) {
-      tempReads.push(line.temp);
-      thrustReads.push(line.thrust);
-      timeReads.push(line.time/1000);
+      if (line.thrust > borderVal) {
+        tempReads.push(line.temp);
+        thrustReads.push(line.thrust);
+        timeReads.push(line.time/1000);
+      }
     }  
 
     // Calculate specific impulse
-    for (var i = 0; i < thrustReads.length; i++) {
-      if (thrustReads[i] > borderVal && beginIdx.length == endIdx.length) {
-          beginIdx.push(i);
-          thrustSum += thrustReads[i];
-      } else if (thrustReads[i] > borderVal) {
-          thrustSum += thrustReads[i];
-      } else if (beginIdx.length > endIdx.length) {
-          endIdx.push(i-1);
-      }
-    }
+    let thrustSum = thrustReads.reduce((a, b) => { return a + b; }, 0);
+    let timeSum = timeReads.slice(-1)[0] - timeReads[0];
+    let idxSum = thrustReads.length;
 
-    for (var i = 0; i < beginIdx.length; i++) {
-      timeSum += timeReads[endIdx[i]] - timeReads[beginIdx[i]];
-      idxSum += endIdx[i] - beginIdx[i] + 1;
-    }
+    let specificImpuls = (10 * (thrustSum / idxSum) * timeSum ) / this.selectedEngine.fuel.weight;
 
     // Calculate max thrust
     let maxThrust = 0;
@@ -89,8 +77,6 @@ export class TestUploadComponent implements OnInit {
 
     this.graphData.updateGraph(tempReads, thrustReads, timeReads);
 
-    let specificImpuls = (10 * (thrustSum / idxSum) * timeSum ) / this.selectedEngine.fuel.weight;
-    
     let test = new Test(this.selectedEngine, timeSum, maxThrust * 10, specificImpuls);
 
     return test;    
