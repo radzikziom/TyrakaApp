@@ -4,26 +4,26 @@
       <label style="color: white; text-align: left;">Parts</label>
       <div class="four fields">
         <div class="field">
-          <select class="ui fluid dropdown" ngModel name="body">
+          <select class="ui fluid dropdown" ngModel name="body" required>
             <option value="" disabled>Body</option>
             <option *ngFor="let body of parts.bodys" [ngValue]="body">{{ body.material }}, {{ body.height }}, {{
                 body.diameter }}</option>
           </select>
         </div>
         <div class="field">
-          <select class="ui fluid dropdown" ngModel name="fuel">
+          <select class="ui fluid dropdown" ngModel name="fuel" required>
             <option value="" disabled>Fuel</option>
             <option *ngFor="let fuel of parts.fuels" [ngValue]="fuel">{{ fuel.type }}, {{ fuel.weight }}</option>
           </select>
         </div>
         <div class="field">
-          <select class="ui fluid dropdown" ngModel name="nozzle">
+          <select class="ui fluid dropdown" ngModel name="nozzle" required>
             <option value="" disabled>Nozzle</option>
             <option *ngFor="let nozzle of parts.nozzles" [ngValue]="nozzle">{{ nozzle.material }}, {{ nozzle.weight }}</option>
           </select>
         </div>
         <div class="field">
-          <select class="ui fluid dropdown" ngModel name="plug">
+          <select class="ui fluid dropdown" ngModel name="plug" required>
             <option value="" disabled>Plug</option>
             <option *ngFor="let plug of parts.plugs" [ngValue]="plug">{{ plug.material }}, {{ plug.weight }}</option>
           </select>
@@ -60,10 +60,10 @@
     </div>
     <div class="field">
       <label style="color: white; float: left">Name</label>
-      <input type="text" class="ui input" placeholder="Name" ngModel name="name">
+      <input type="text" class="ui input" placeholder="Name" ngModel name="name" required>
     </div>
     <div class="field">
-      <button class="ui primary button" type="submit">Submit</button>
+      <button [disabled]="!form.valid" class="ui primary button" type="submit">Submit</button>
     </div>
   </form>
 </div>

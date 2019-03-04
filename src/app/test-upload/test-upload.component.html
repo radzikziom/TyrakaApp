@@ -1,22 +1,16 @@
-<div class="ui centered grid">
-  <div class="row" style="margin-top: 150px;">
-    <div class="two wide column">
-      <select [(ngModel)]="selectedEngine" class="ui dropdown full-width">
-        <option *ngFor="let engine of engines" [ngValue]="engine" >{{ engine.name }}</option>
+<div class="ui centered grid" style="margin-top: 70px">
+  <form class="ui form three wide column" (ngSubmit)="onSubmit(form)" #form="ngForm">
+    <div class="field">
+      <label style="color: white; text-align: left;">Engine</label>
+      <select class="ui fluid dropdown" ngModel name="engine">
+        <option value="" disabled>Engine</option>
+        <option *ngFor="let engine of engines" [ngValue]="engine">{{ engine.name }}</option>
       </select>
     </div>
-  </div>
-  <div class="row">
-    <div class="two wide column">
-      <label class="ui violet button full-width">
-        Choose a file
-        <input hidden id="file-input" type="file" (change)="onFileSelected($event)">
-      </label>
+    <div class="field">
+      <label style="color: white; text-align: left;">Test results</label>
+      <input id="file-input" type="file" (change)="onFileSelected($event)">
     </div>
-  </div>
-  <div class="row">
-    <div class="two wide column">
-      <button (click)="onUpload()" class="ui primary button full-width">Upload</button>
-    </div>
-  </div>
+    <button type="submit" class="ui primary button">Submit</button>
+  </form>
 </div>

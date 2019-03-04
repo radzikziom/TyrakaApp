@@ -3,12 +3,12 @@
     <h1>Add a fuel</h1>
     <div class="field">
       <label style="color: white">Type</label>
-      <input type="text" placeholder="Type" ngModel name="type">
+      <input type="text" placeholder="Type" ngModel name="type" required>
     </div>
     <div class="field">
       <label style="color: white">Weight</label>
-      <input type="text" placeholder="Weight (kg)" ngModel name="weight">
+      <input type="text" placeholder="Weight (kg)" ngModel name="weight" required number>
     </div>
-    <button type="submit" class="ui button">Submit</button>
+    <button [disabled]="!form.valid" type="submit" class="ui button">Submit</button>
   </form>
 </div>

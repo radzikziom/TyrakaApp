@@ -1,10 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DatabaseService } from '../database.service';
 
-import { Fuel } from '../shared/models/fuel.model';
-import { Nozzle } from '../shared/models/nozzle.model';
-import { Plug } from '../shared/models/plug.model';
-import { Body } from '../shared/models/body.model';
 import { Engine } from '../shared/models/engine.model';
 import { Parts } from '../shared/models/parts.model';
 import { NgForm } from '@angular/forms';
@@ -51,10 +47,8 @@ export class EngineUploadComponent implements OnInit {
 
   onSubmit(form: NgForm) {
     let newEngine = new Engine(form.form.value.name, form.form.value.body, form.form.value.fuel, form.form.value.nozzle, form.form.value.plug);
-    console.log(newEngine);
     this.database.createEngine(newEngine);
     this.submitSwal.show();
     this.form.resetForm();
   }
-
 }

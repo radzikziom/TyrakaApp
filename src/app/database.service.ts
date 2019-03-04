@@ -9,6 +9,9 @@ import { Test } from './shared/models/test.model';
 import { Body } from './shared/models/body.model';
 import { BehaviorSubject, ObjectUnsubscribedError } from 'rxjs';
 import { Parts } from './shared/models/parts.model';
+import { Result } from './shared/models/results.model';
+import { GraphService } from './graph.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -24,8 +27,8 @@ export class DatabaseService {
     parts: Parts
   };
 
-  constructor(private http: HttpClient) {
-    this.serverAddress = 'http://localhost:8080/api';
+  constructor(private http: HttpClient, private graphService: GraphService, private router: Router) {
+    this.serverAddress = 'http://localhost:8080/tyrakaServer/api';
     this._engines = <BehaviorSubject<Engine[]>> new BehaviorSubject([]);
     this._tests = <BehaviorSubject<Test[]>> new BehaviorSubject([]);
     this._parts = <BehaviorSubject<Parts>> new BehaviorSubject({});
@@ -59,7 +62,7 @@ export class DatabaseService {
       this.dataStore.engines = data;
       this._engines.next(Object.assign({}, this.dataStore).engines);
     }, error => {
-      alert("Error while connecting with server.")
+      alert("Error while connecting with server: " + error)
     }
     );
   }
@@ -175,8 +178,12 @@ export class DatabaseService {
     })
   }
 
-  createTest(test: Test) {
-    this.http.post(this.serverAddress + '/test', test).subscribe();
+  createTest(test: Test, results: Result[]) {
+    let testId;
+    this.http.post<Test>(this.serverAddress + '/test', test).subscribe((response) => { 
+      testId = response; 
+      this.http.post (this.serverAddress + '/test/' + testId, { "results": results}).subscribe();
+    });
     this.dataStore.tests.push(test);
     this._tests.next(Object.assign({}, this.dataStore).tests);
   }
@@ -189,5 +196,20 @@ export class DatabaseService {
       }
     });
     this._tests.next(Object.assign({}, this.dataStore).tests);
+  }
+
+  loadGraph(id) {
+    this.http.get<Result[]>(this.serverAddress + '/testResults/' + id).subscribe(data => {
+      let temp = [];
+      let thrust = [];
+      let time = [];
+      for (let result of data) {
+        temp.push(result.temp);
+        thrust.push(result.thrust);
+        time.push(result.time);
+      }
+      this.graphService.updateGraph(temp, thrust, time);
+      this.router.navigateByUrl('/test-graph');
+    })
   }
 }

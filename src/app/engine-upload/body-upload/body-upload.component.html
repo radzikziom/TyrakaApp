@@ -3,20 +3,20 @@
     <h1>Add a body</h1>
     <div class="field">
       <label style="color: white">Material</label>
-      <input type="text" placeholder="Material" ngModel name="material">
+      <input type="text" placeholder="Material" ngModel name="material" required>
     </div>
     <div class="field">
       <label style="color: white">Height</label>
-      <input type="number" placeholder="Height (cm)" ngModel name="height">
+      <input type="number" placeholder="Height (cm)" ngModel name="height" required number>
     </div>
     <div class="field">
       <label style="color: white">Diameter</label>
-      <input type="number" placeholder="Diameter (cm)" ngModel name="diameter">
+      <input type="number" placeholder="Diameter (cm)" ngModel name="diameter" required number>
     </div>
     <div class="field">
       <label style="color: white">Weight</label>
-      <input type="number" placeholder="Weight (kg)" ngModel name="weight">
+      <input type="number" placeholder="Weight (kg)" ngModel name="weight" required number>
     </div>
-    <button class="ui button" type="submit">Submit</button>
+    <button [disabled]="!form.valid" class="ui button" type="submit">Submit</button>
   </form>
 </div>

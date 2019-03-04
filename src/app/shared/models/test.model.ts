@@ -1,4 +1,5 @@
 import { Engine } from './engine.model';
+import { Result } from './results.model';
 
 export class Test {
     id: number;
@@ -7,6 +8,7 @@ export class Test {
     maxThrust: number;
     specificImpuls: number;
     engine: Engine;
+    results: Result[];
 
     constructor(engine: Engine, burningTime: number, maxThrust: number, specificImpuls: number) {
         this.engine = engine;

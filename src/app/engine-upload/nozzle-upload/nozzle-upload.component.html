@@ -3,12 +3,12 @@
     <h1 style="text-align: left">Add a new nozzle</h1>
     <div class="field">
       <label style="color: white">Material</label>
-      <div class="ui input"><input type="text" placeholder="Material" ngModel name="material"></div>
+      <div class="ui input"><input type="text" placeholder="Material" ngModel name="material" required></div>
     </div>
     <div class="field">
       <label style="color: white">Weight</label>
-      <div class="ui input"><input type="text" placeholder="Weight (kg)" ngModel name="weight"></div>
+      <div class="ui input"><input type="text" placeholder="Weight (kg)" ngModel name="weight" required number></div>
     </div>
-    <button type="submit" class="ui button">Submit</button>
+    <button [disabled]="!form.valid" class="submit" class="ui button">Submit</button>
   </form>
   
