@@ -8,7 +8,7 @@ export class GraphService {
   thrustReads = [];
   timestamps = [];
 
-  constructor() { }
+  constructor() {}
 
   getTempReads() {
     return this.tempReads;
@@ -23,10 +23,8 @@ export class GraphService {
   }
 
   updateGraph(tempReads: number[], thrustReads: number[], timestams: number[]) {
-    this.tempReads = tempReads.map((value) => { return value - 272; });
+    this.tempReads = tempReads.map(value => value - 272);
     this.thrustReads = thrustReads;
     this.timestamps = timestams;
   }
-
-  
 }
